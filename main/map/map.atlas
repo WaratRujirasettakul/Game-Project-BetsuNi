@@ -1,0 +1,6 @@
+images {
+  image: "/main/map/SSBG_1 no zombie jeremy.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0
