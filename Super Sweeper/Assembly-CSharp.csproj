@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Char_Movement.cs" />
+    <Compile Include="Assets\Script\Char_System.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
