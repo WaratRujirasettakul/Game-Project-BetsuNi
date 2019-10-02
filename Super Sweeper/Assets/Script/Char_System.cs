@@ -20,7 +20,10 @@ public class Char_System : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump = true;
+            if (!Attack)
+            {
+                Jump = true;
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {

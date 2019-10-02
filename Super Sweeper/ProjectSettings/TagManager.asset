@@ -44,6 +44,9 @@ TagManager:
   - name: Wall
     uniqueID: 248197831
     locked: 0
+  - name: Object
+    uniqueID: 207948029
+    locked: 0
   - name: Character
     uniqueID: 3654159225
     locked: 0
