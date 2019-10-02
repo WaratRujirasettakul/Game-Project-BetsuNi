@@ -62,8 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Camera_System.cs" />
     <Compile Include="Assets\Script\Char_System.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
+    <Compile Include="Assets\Script\Gui_System.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Arcafanetiz/Desktop/Betsu Ni/Game-Project-BetsuNi/Super Sweeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
