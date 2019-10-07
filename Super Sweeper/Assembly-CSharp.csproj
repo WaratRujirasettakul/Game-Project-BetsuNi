@@ -66,8 +66,11 @@
     <Compile Include="Assets\Script\Camera_System.cs" />
     <Compile Include="Assets\Script\Char_System.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
+    <Compile Include="Assets\Script\Exit_Object.cs" />
     <Compile Include="Assets\Script\Gui_System.cs" />
     <Compile Include="Assets\Script\Light_Effect.cs" />
+    <Compile Include="Assets\Script\Main_Menu.cs" />
+    <Compile Include="Assets\Script\Zombie_AI.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

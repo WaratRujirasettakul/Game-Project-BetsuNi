@@ -24,4 +24,9 @@ public class Gui_System : MonoBehaviour
             }
         }
     }
+
+    public void Fade_In()
+    {
+        Animator.SetBool("Teleport", true);
+    }
 }

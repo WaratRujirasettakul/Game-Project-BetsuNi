@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -41,11 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Block
+    uniqueID: 3670456505
+    locked: 0
   - name: Wall
     uniqueID: 248197831
     locked: 0
   - name: Object
     uniqueID: 207948029
+    locked: 0
+  - name: Enemy
+    uniqueID: 1824336015
     locked: 0
   - name: Character
     uniqueID: 3654159225
