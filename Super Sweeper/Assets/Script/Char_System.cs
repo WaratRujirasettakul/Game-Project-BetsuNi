@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Char_System : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Char_System : MonoBehaviour
     private float Walk_Target = 0f;
     private bool Jump = false;
     private bool Attack = false;
+    private bool Ready = false;
 
     private void Start()
     {
@@ -73,7 +75,19 @@ public class Char_System : MonoBehaviour
         {
             Animator.SetBool("Dead", true);
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            if (!Ready)
+            {
+                Ready = true;
+                GameObject.Find("Image").GetComponent<Gui_System>().Fade_In();
+                StartCoroutine(Change());
+            }
+            
         }
         Jump = false;
+    }
+    private IEnumerator Change()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(0);
     }
 }

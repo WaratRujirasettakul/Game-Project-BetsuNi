@@ -3144,6 +3144,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1299890845}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1157261471 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1017085313403405691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1164153091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6689766748062456312, guid: f3379b49085ab5747bb8b9e2664df9c3,
@@ -5208,7 +5214,7 @@ GameObject:
   - component: {fileID: 1581059159}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6103,6 +6109,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Light 2D
       objectReference: {fileID: 0}
+    - target: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 2.0402756
+      objectReference: {fileID: 0}
+    - target: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.1972046
+      objectReference: {fileID: 0}
+    - target: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.7728336
+      objectReference: {fileID: 0}
+    - target: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4.011712
+      objectReference: {fileID: 0}
+    - target: {fileID: -2534674128964257762, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617891790985209756, guid: ade74c916cd1fb842ac59e465ac96cb1,
+        type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 1157261471}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ade74c916cd1fb842ac59e465ac96cb1, type: 3}
 --- !u!4 &2667912888864557200 stripped
