@@ -12,6 +12,7 @@ public class Char_System : MonoBehaviour
     [Header("Property")]
     public float Walk_Speed = 40f;
     public bool Dead = false;
+    public int Health = 10;
 
     private LayerMask Enemy;
     private float Walk_Target = 0f;
