@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -778,7 +778,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -794,20 +793,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f974abe2af07de246bd609d96f3a81bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 519420032}
-  Player: {fileID: 1581059157}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3564,9 +3549,8 @@ GameObject:
   - component: {fileID: 971956977}
   - component: {fileID: 971956976}
   - component: {fileID: 971956975}
-  - component: {fileID: 971956974}
   m_Layer: 5
-  m_Name: Fade
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3592,20 +3576,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &971956974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971956972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9242f798519b254d909f6c537674d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 1581059157}
-  Animator: {fileID: 971956975}
 --- !u!95 &971956975
 Animator:
   serializedVersion: 3
@@ -6225,8 +6195,8 @@ GameObject:
   - component: {fileID: 1581059154}
   - component: {fileID: 1581059153}
   - component: {fileID: 1581059152}
-  - component: {fileID: 1581059158}
   - component: {fileID: 1581059159}
+  - component: {fileID: 1581059158}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6402,14 +6372,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581059151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7fc25a7c7d3da9439663baa4804872b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a0c36cf0a39c6745a89641d1294cb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Background: {fileID: 971956975}
+  Camera: {fileID: 519420032}
+  Bar: {fileID: 1005968014}
+  Player: {fileID: 1581059157}
   Controller: {fileID: 1581059155}
+  RigidBody: {fileID: 1581059154}
   Animator: {fileID: 1581059159}
   Check_Attack: {fileID: 1205495127}
   Walk_Speed: 40
-  Dead: 0
+  Health: 10
 --- !u!95 &1581059159
 Animator:
   serializedVersion: 3

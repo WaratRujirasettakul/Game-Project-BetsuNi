@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
 
-public class Light_Effect : MonoBehaviour
+public class Object_Light: MonoBehaviour
 {
     [Header("Reference")]
     public Light2D Shine;

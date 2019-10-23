@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 3353671721695975975}
   - component: {fileID: 3353671721695975972}
   - component: {fileID: 3353671721695975973}
-  - component: {fileID: 3353671721695975970}
-  - component: {fileID: 3353671721695975971}
   - component: {fileID: 3353671721695975968}
+  - component: {fileID: 7741520470030319410}
   m_Layer: 9
   m_Name: Zombie
   m_TagString: Enemy
@@ -157,48 +156,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &3353671721695975970
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3353671721695975969}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 80eac216353cfdd419ff71986d851d4e, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.95}
-  m_EdgeRadius: 0
---- !u!58 &3353671721695975971
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3353671721695975969}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 80eac216353cfdd419ff71986d851d4e, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.33004555}
-  serializedVersion: 2
-  m_Radius: 0.49495897
 --- !u!114 &3353671721695975968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +170,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 3353671721695975972}
   Animator: {fileID: 3353671721695975975}
-  Target: {fileID: 0}
+  Zombie: {fileID: 3353671721695975977}
   Check_Attack: {fileID: 3353671721964663999}
   Walk_Speed: 20
   Attack_Cooldown: 2
-  Dead: 0
+  Attack_Delay: 1
+  Vision: 10
+  Health: 1
+--- !u!70 &7741520470030319410
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353671721695975969}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.77, y: 1.73}
+  m_Direction: 0
 --- !u!1 &3353671721964663996
 GameObject:
   m_ObjectHideFlags: 0

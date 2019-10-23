@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2707264067604749819}
   - component: {fileID: 6670129923192417461}
-  - component: {fileID: 6973647120898670152}
+  - component: {fileID: 5165532437068920120}
   m_Layer: 0
   m_Name: Light_1_Flicker
   m_TagString: Untagged
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 207948029
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f328e64a3a074c143a8a20c7ef6291a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6973647120898670152
+--- !u!114 &5165532437068920120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
