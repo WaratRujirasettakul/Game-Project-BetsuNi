@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1824336015
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: caf7ce48c70f4d943a0a30f92634d3a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83e755821b54cb4faee64daa400ee40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
+  m_JumpForce: 700
   m_CrouchSpeed: 0.4
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -169,11 +169,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 3353671721695975972}
+  RigidBody: {fileID: 3353671721695975973}
+  Collider: {fileID: 7741520470030319410}
   Animator: {fileID: 3353671721695975975}
   Zombie: {fileID: 3353671721695975977}
   Check_Attack: {fileID: 3353671721964663999}
+  Blood: {fileID: 3798910081915964106, guid: b424643f9d185704ea69065dc31afd3c, type: 3}
   Walk_Speed: 20
   Attack_Cooldown: 2
+  Jump_Cooldown: 1
   Attack_Delay: 1
   Vision: 10
   Health: 1

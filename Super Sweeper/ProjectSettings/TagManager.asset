@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Blood1
+  - Blood
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
+  - Blood
   - 
   - 
   - 
@@ -50,6 +52,9 @@ TagManager:
     locked: 0
   - name: Block
     uniqueID: 3670456505
+    locked: 0
+  - name: Blood
+    uniqueID: 2758759923
     locked: 0
   - name: Enemy
     uniqueID: 1824336015
