@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.Experimental.Rendering.LWRP;
 public class Player_All : MonoBehaviour
 {
     [Header("Reference")]
@@ -12,6 +12,12 @@ public class Player_All : MonoBehaviour
     public Text Blood1_Current;
     public Text Blood2_Current;
     public Text Blood3_Current;
+    public Text Blood1_Require;
+    public Text Blood2_Require;
+    public Text Blood3_Require;
+    public Image Blood1_Icon;
+    public Image Blood2_Icon;
+    public Image Blood3_Icon;
     [Header("Component")]
     public Transform Player;
     public CharacterController2D Controller;
@@ -21,7 +27,13 @@ public class Player_All : MonoBehaviour
     [Header("Property")]
     public float Walk_Speed;
     public int Health;
+    public int Blood1_Need;
+    public int Blood2_Need;
+    public int Blood3_Need;
 
+    [HideInInspector] public bool Door_Open = false;
+
+    private GameObject Exit;
     private LayerMask Enemy;
     private LayerMask Blood;
     private float Walk_Target = 0f;
@@ -39,8 +51,39 @@ public class Player_All : MonoBehaviour
     }
     private void Start()
     {
+        Exit = GameObject.FindGameObjectWithTag("Exit");
         Enemy = LayerMask.GetMask("Enemy");
         Blood = LayerMask.GetMask("Blood");
+        if (Blood1_Need == 0)
+        {
+            Blood1_Current.enabled = false;
+            Blood1_Require.enabled = false;
+            Blood1_Icon.enabled = false;
+        }
+        else
+        {
+            Blood1_Require.text = "/" + Blood1_Need.ToString("D2");
+        }
+        if (Blood2_Need == 0)
+        {
+            Blood2_Current.enabled = false;
+            Blood2_Require.enabled = false;
+            Blood2_Icon.enabled = false;
+        }
+        else
+        {
+            Blood2_Require.text = "/" + Blood2_Need.ToString("D2");
+        }
+        if (Blood3_Need == 0)
+        {
+            Blood3_Current.enabled = false;
+            Blood3_Require.enabled = false;
+            Blood3_Icon.enabled = false;
+        }
+        else
+        {
+            Blood3_Require.text = "/" + Blood3_Need.ToString("D2");
+        }
     }
     private void Update()
     {
@@ -104,7 +147,6 @@ public class Player_All : MonoBehaviour
             RigidBody.bodyType = RigidbodyType2D.Static;
             if (!Return)
             {
-                Background.SetBool("Fade", true);
                 Back();
             }
 
@@ -129,6 +171,7 @@ public class Player_All : MonoBehaviour
     private IEnumerator MainMenu()
     {
         Return = true;
+        Background.SetBool("Fade", true);
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(0);
     }
@@ -189,6 +232,12 @@ public class Player_All : MonoBehaviour
                 Destroy(Blood_Target);
                 break;
             }
+        }
+        if (Blood1 >= Blood1_Need && Blood2 >= Blood2_Need && Blood3 >= Blood3_Need)
+        {
+            Exit.transform.Find("Exit Lamp").GetComponent<Light2D>().enabled = true;
+            Exit.transform.Find("Exit Light").GetComponent<Light2D>().enabled = true;
+            Door_Open = true;
         }
         yield return new WaitForSeconds(1.5f);
         Clean = false;

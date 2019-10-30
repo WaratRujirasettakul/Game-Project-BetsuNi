@@ -177,7 +177,7 @@ MonoBehaviour:
   Blood: {fileID: 3798910081915964106, guid: b424643f9d185704ea69065dc31afd3c, type: 3}
   Walk_Speed: 20
   Attack_Cooldown: 2
-  Jump_Cooldown: 1
+  Jump_Cooldown: 2
   Attack_Delay: 1
   Vision: 10
   Health: 1
