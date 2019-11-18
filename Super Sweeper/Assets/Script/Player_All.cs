@@ -26,7 +26,8 @@ public class Player_All : MonoBehaviour
     public Transform Check_Attack;
     [Header("Property")]
     public float Walk_Speed;
-    public int Health;
+    public float Health;
+    public float Stun;
     public int Blood1_Need;
     public int Blood2_Need;
     public int Blood3_Need;
@@ -40,6 +41,8 @@ public class Player_All : MonoBehaviour
     private int Blood1 = 0;
     private int Blood2 = 0;
     private int Blood3 = 0;
+    private int Blood4 = 0;
+    private int Blood5 = 0;
     private bool Jump = false;
     private bool Clean = false;
     private bool Attack_Light = false;
@@ -94,14 +97,14 @@ public class Player_All : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                if (!Attack_Light && !Attack_Heavy && !Clean)
+                if (!Attack_Light && !Attack_Heavy && !Clean && Stun <= 0)
                 {
                     Jump = true;
                 }
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                if (!Attack_Light && !Attack_Heavy && !Clean)
+                if (!Attack_Light && !Attack_Heavy && !Clean && Stun <= 0)
                 {
                     Attack_Light = true;
                     StartCoroutine(LightAttack());
@@ -109,12 +112,12 @@ public class Player_All : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire2"))
             {
-                if (!Attack_Light && !Attack_Heavy && !Clean)
+                if (!Attack_Light && !Attack_Heavy && !Clean && Stun <= 0)
                 {
                     Attack_Heavy = true;
                     StartCoroutine(HeavyAttack());
                 }
-            }
+            } //DUHDUHDUHDUHDUHDUHDUHDUHDUHDUH
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!Attack_Light && !Attack_Heavy && !Clean)
@@ -130,7 +133,7 @@ public class Player_All : MonoBehaviour
         Bar.sizeDelta = new Vector2(((566f/10f)*Health), 60f);
         if (Health > 0)
         {
-            if (!this.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Light") && !this.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Heavy") && !Attack_Heavy && !Attack_Light && !Clean)
+            if (!this.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Light") && !this.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Heavy") && !Attack_Heavy && !Attack_Light && !Clean && Stun <= 0)
             {
                 Animator.SetFloat("Speed", Mathf.Abs(Walk_Target));
                 Controller.Move(Walk_Target * Time.fixedDeltaTime, false, Jump);
@@ -139,6 +142,10 @@ public class Player_All : MonoBehaviour
             {
                 Animator.SetFloat("Speed", Mathf.Abs(0));
                 Controller.Move(0, false, false);
+            }
+            if (Stun > 0)
+            {
+                Stun -= 0.02f;
             }
         }
         else

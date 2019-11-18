@@ -10,15 +10,18 @@ public class Zombie_All : MonoBehaviour
     public Animator Animator;
     public Transform Zombie;
     public Transform Check_Attack;
+    public SpriteRenderer Warn;
     [Header("Property")]
     public GameObject Blood;
     public float Walk_Speed;
     public float Attack_Cooldown;
     public float Jump_Cooldown;
     public float Attack_Delay;
+    public float Attack_Damage;
+    public float Attack_Knock;
+    public float Attack_Stun;
     public float Vision;
     public int Health;
-
 
     private Transform Target;
     private LayerMask Enemy;
@@ -84,10 +87,9 @@ public class Zombie_All : MonoBehaviour
     {
         if (Health > 0)
         {
-            if (!this.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (!Attack)
             {
                 Controller.Move(Walk_Amount * Time.fixedDeltaTime, false, Jump);
-                Attack = false;
             }
             else
             {
@@ -104,7 +106,9 @@ public class Zombie_All : MonoBehaviour
     }
     private IEnumerator Zombie_Attack()
     {
+        Warn.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(Attack_Delay);
+        Warn.color = new Color(1, 1, 1, 0);
         if (Health > 0)
         {
             Animator.SetTrigger("Attack");
@@ -113,12 +117,20 @@ public class Zombie_All : MonoBehaviour
             {
                 if (Colliders[Index].gameObject != gameObject)
                 {
-                    Colliders[Index].gameObject.GetComponent<Player_All>().Health--;
+                    int Right = -1;
+                    if (Colliders[Index].gameObject.GetComponent<Transform>().position.x > Zombie.position.x)
+                    {
+                        Right = 1;
+                    }
+                    Colliders[Index].gameObject.GetComponent<Player_All>().Health -= Attack_Damage;
+                    Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Stun;
+                    Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock*Right, 0));
                     Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
                     break;
                 }
             }
         }
+        Attack = false;
         yield return new WaitForSeconds(Attack_Cooldown);
         Cooldown = false;
     }

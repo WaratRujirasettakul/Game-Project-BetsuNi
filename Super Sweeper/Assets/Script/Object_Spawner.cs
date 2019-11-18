@@ -120,7 +120,7 @@ public class Object_Spawner : MonoBehaviour
         }
         yield return new WaitForSeconds(Random.Range(0.5f, 1f));
         Door_Pop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        Door_Pop.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(Random.Range(-5f, 5f), Random.Range(0f, 5f)), new Vector2(Random.Range(-1f, 1f), Random.Range(-2f, 2f)));
+        Door_Pop.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(Random.Range(-5f, 5f), Random.Range(0f, 10f)), new Vector2(Random.Range(-1f, 1f), Random.Range(-2f, 2f)));
         Spawn_Enabled = true;
         Destroy(Door_Pop, 4);
     }
