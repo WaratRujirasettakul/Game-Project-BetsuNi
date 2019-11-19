@@ -16,10 +16,13 @@ public class Zombie_All : MonoBehaviour
     public float Walk_Speed;
     public float Attack_Cooldown;
     public float Jump_Cooldown;
-    public float Attack_Delay;
     public float Attack_Damage;
+    public float Attack_Delay;
+    public float Attack_Frame;
     public float Attack_Knock;
     public float Attack_Stun;
+    public float Attack_Penalty;
+    
     public float Vision;
     public int Health;
 
@@ -112,6 +115,7 @@ public class Zombie_All : MonoBehaviour
         if (Health > 0)
         {
             Animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(Attack_Frame);
             Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.2f, Enemy);
             for (int Index = 0; Index < Colliders.Length; Index++)
             {
@@ -130,6 +134,7 @@ public class Zombie_All : MonoBehaviour
                 }
             }
         }
+        yield return new WaitForSeconds(Attack_Penalty);
         Attack = false;
         yield return new WaitForSeconds(Attack_Cooldown);
         Cooldown = false;

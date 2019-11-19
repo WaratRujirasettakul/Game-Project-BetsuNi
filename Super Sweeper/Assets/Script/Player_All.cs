@@ -9,6 +9,7 @@ public class Player_All : MonoBehaviour
     public Animator Background;
     public Transform Camera;
     public RectTransform Bar;
+    public Text Score;
     public Text Blood1_Current;
     public Text Blood2_Current;
     public Text Blood3_Current;

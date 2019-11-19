@@ -260,10 +260,12 @@ MonoBehaviour:
   Walk_Speed: 20
   Attack_Cooldown: 0.3
   Jump_Cooldown: 2
-  Attack_Delay: 0.3
   Attack_Damage: 0.5
-  Attack_Knock: 50
+  Attack_Delay: 0.3
+  Attack_Frame: 0.12
+  Attack_Knock: 500
   Attack_Stun: 0.1
+  Attack_Penalty: 0.2
   Vision: 10
   Health: 1
 --- !u!70 &1676851995751510474
