@@ -158,19 +158,19 @@ MonoBehaviour:
   Check_Attack: {fileID: 3353671721695975977}
   Warn: {fileID: 1903663369804720196}
   Blood: {fileID: 6926793488882532549, guid: ce34976e0a0fe1d4eb06c0609194f08e, type: 3}
-  Walk_Speed: 50
+  Walk_Speed: 60
   Attack_Cooldown: 1
   Jump_Cooldown: 2
   Run_Duration: 1
   Attack_Damage: 2
   Attack_Delay: 0.5
-  Attack_Frame: 0.25
+  Attack_Frame: 0.33
   Attack_Knock: 500
   Attack_Stun: 0.2
   Attack_Penalty: 1
   Attack_Heavy_Damage: 4
   Attack_Heavy_Delay: 1
-  Attack_Heavy_Frame: 0.7
+  Attack_Heavy_Frame: 0.77
   Attack_Heavy_Knock: 250
   Attack_Heavy_Stun: 1
   Attack_Heavy_Penalty: 1

@@ -55,7 +55,7 @@ public class Zombie_Krale : MonoBehaviour
         if (Health > 0)
         {
             {
-                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.2f, Ally);
+                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.6f, Ally);
                 for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
                     if (Colliders[Index].gameObject != gameObject)
@@ -151,7 +151,7 @@ public class Zombie_Krale : MonoBehaviour
             yield return new WaitForSeconds(Attack_Frame);
             if (Health > 0)
             {
-                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
+                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.6f, Enemy);
                 for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
                     if (Colliders[Index].gameObject != gameObject)

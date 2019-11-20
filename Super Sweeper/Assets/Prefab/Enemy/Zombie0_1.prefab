@@ -164,14 +164,14 @@ MonoBehaviour:
   Run_Duration: 1
   Attack_Damage: 1
   Attack_Delay: 0.5
-  Attack_Frame: 0.25
-  Attack_Knock: 500
+  Attack_Frame: 0.21
+  Attack_Knock: 250
   Attack_Stun: 0.2
   Attack_Penalty: 1
   Attack_Heavy_Damage: 2
   Attack_Heavy_Delay: 1
-  Attack_Heavy_Frame: 0.7
-  Attack_Heavy_Knock: 250
+  Attack_Heavy_Frame: 0.25
+  Attack_Heavy_Knock: 1000
   Attack_Heavy_Stun: 1
   Attack_Heavy_Penalty: 1
   Attack_Heavy_Cooldown: 2

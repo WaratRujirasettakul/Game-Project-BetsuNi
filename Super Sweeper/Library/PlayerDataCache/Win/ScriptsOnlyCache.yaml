@@ -28,8 +28,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1272,5 +1274,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Stage 4.unity
   - Assets/Scenes/Stage 5.unity
   - Assets/Scenes/Stage 6.unity
-  playerPath: C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper Beta/Super
+  playerPath: D:/PaatR/document/GitHub/Game-Project-BetsuNi/Super Sweeper Betah/Super
     Sweeper.exe
