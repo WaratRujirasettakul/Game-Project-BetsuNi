@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 887, y: 344}
   m_MaxSize: {x: 22012, y: 14044}
   vertical: 0
-  controlID: 141
+  controlID: 81
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -485,23 +485,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 54330000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1485ffff5e85ffff2a8affffdc8effff4a93ffffb097fffffa9bffff7a9fffff829fffff0ca1ffffe0a5ffff0cabffff24b0ffff1ab6ffff6afbffff
+      m_ExpandedIDs: c0d3ffff06d4ffffced8ffff7cddffffe6e1ffff48e6ffff8eeaffff0ceeffff10eeffff6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Joke
-        m_OriginalName: Joke
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 18416
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 7}
       m_SearchString: 
@@ -922,18 +922,18 @@ MonoBehaviour:
     m_ExpandedIDs: ffffffff00000000a83400005436000066380000263a0000fc3a0000603c0000c2400000da410000d8490000da490000dc490000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Main_Menu
-      m_OriginalName: Main_Menu
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10618
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 14}
     m_SearchString: 
