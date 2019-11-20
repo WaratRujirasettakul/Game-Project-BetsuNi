@@ -11,15 +11,16 @@ public class CharacterController2D : MonoBehaviour
     public Transform m_GroundCheck;
     public Transform m_CeilingCheck;
     public Collider2D m_CrouchDisableCollider;
+    public SpriteRenderer Clean;
+    public bool m_Grounded;
 
-	const float k_GroundedRadius = .1f;
-	private bool m_Grounded;
+    const float k_GroundedRadius = .1f;
 	const float k_CeilingRadius = .2f;
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;
 	private Vector3 m_Velocity = Vector3.zero;
 
-	[Header("Events")]
+    [Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -34,7 +35,7 @@ public class CharacterController2D : MonoBehaviour
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-		if (OnLandEvent == null)
+        if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
 		if (OnCrouchEvent == null)
@@ -142,5 +143,9 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+        if (Clean != null)
+        {
+            Clean.flipX = !Clean.flipX;
+        }
 	}
 }

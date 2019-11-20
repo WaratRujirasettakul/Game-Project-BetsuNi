@@ -16,6 +16,22 @@ public class Exit_Object : MonoBehaviour
             {
                 Level_Save.Level1 = true;
             }
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                Level_Save.Level2 = true;
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                Level_Save.Level3 = true;
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                Level_Save.Level4 = true;
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 5)
+            {
+                Level_Save.Level5 = true;
+            }
             Player.Back();
         }
     }

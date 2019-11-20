@@ -4,7 +4,7 @@ using UnityEngine;
 public class Blood : MonoBehaviour
 {
     [Header("Property")]
-    [Range(1, 5)]public int Level = 1;
+    [Range(0, 6)]public int Level = 1;
     [HideInInspector]public List<int> Clean;
     private void Safe_Clean(int Length)
     {
@@ -22,7 +22,11 @@ public class Blood : MonoBehaviour
     }
     private void Start()
     {
-        if (Level == 1)
+        if (Level == 0)
+        {
+            Dang_Clean(10);
+        }
+        else if (Level == 1)
         {
             Safe_Clean(1);
         }
@@ -41,6 +45,10 @@ public class Blood : MonoBehaviour
         else if (Level == 5)
         {
             Dang_Clean(2);
+        }
+        else if (Level == 6)
+        {
+            Dang_Clean(3);
         }
     }
 }

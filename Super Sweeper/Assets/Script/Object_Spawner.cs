@@ -4,8 +4,12 @@ using UnityEngine;
 public class Object_Spawner : MonoBehaviour
 {
     [Header("Reference")]
-    public GameObject Zombie;
-    public GameObject Zombie_Waiter;
+    public GameObject Zombie1;
+    public GameObject Zombie2;
+    public GameObject Zombie3;
+    public GameObject Zombie4;
+    public GameObject Zombie5;
+    public GameObject Zombie6;
     public GameObject Door_Pop;
     public GameObject Knock_1;
     public GameObject Knock_2;
@@ -13,7 +17,14 @@ public class Object_Spawner : MonoBehaviour
     [Header("Component")]
     public SpriteRenderer Renderer;
     [Header("Property")]
-    [Range(1, 8)] public int Level = 1;
+    public bool Limited;
+    public int Limited_Spawn = 1;
+    public bool Zombie_1;
+    public bool Zombie_2;
+    public bool Zombie_3;
+    public bool Zombie_4;
+    public bool Zombie_5;
+    public bool Zombie_6;
     public float Spawn_Range;
     public float Spawn_Cooldown_Minimum;
     public float Spawn_Cooldown_Maximum;
@@ -32,31 +43,73 @@ public class Object_Spawner : MonoBehaviour
         {
             StartCoroutine(Open());
         }
-        else if (Spawn_Enabled && !Spawn_Cooldown)
+        else if (Spawn_Enabled && !Spawn_Cooldown && !Limited)
         {
             Spawn_Cooldown = true;
+            StartCoroutine(Spawn());
+        }
+        else if (Spawn_Enabled && !Spawn_Cooldown && Limited && Limited_Spawn > 0)
+        {
+            Spawn_Cooldown = true;
+            Limited_Spawn -= 1;
             StartCoroutine(Spawn());
         }
     }
     private IEnumerator Spawn()
     {
-        if (Level == 1)
+        bool Spawned = false;
+        do
         {
-            Instantiate(Zombie, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
-        }
-        if (Level == 2)
-        {
-            int Rand = Random.Range(1, 3);
+            int Rand = Random.Range(1, 7);
             if (Rand == 1)
             {
-                Instantiate(Zombie, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                if (Zombie_1)
+                {
+                    Instantiate(Zombie1, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
             }
             else if (Rand == 2)
             {
-                Instantiate(Zombie_Waiter, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                if (Zombie_2)
+                {
+                    Instantiate(Zombie2, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
             }
-            
-        }
+            else if (Rand == 3)
+            {
+                if (Zombie_3)
+                {
+                    Instantiate(Zombie3, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
+            }
+            else if (Rand == 4)
+            {
+                if (Zombie_4)
+                {
+                    Instantiate(Zombie4, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
+            }
+            else if (Rand == 5)
+            {
+                if (Zombie_5)
+                {
+                    Instantiate(Zombie5, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
+            }
+            else if (Rand == 6)
+            {
+                if (Zombie_6)
+                {
+                    Instantiate(Zombie6, transform.position, transform.rotation, GameObject.Find("Enemy").transform).GetComponent<Zombie_All>().Vision = 100;
+                    Spawned = true;
+                }
+            }
+        } while (!Spawned);
         yield return new WaitForSeconds(Random.Range(Spawn_Cooldown_Minimum, Spawn_Cooldown_Maximum));
         Spawn_Cooldown = false;
     }
@@ -120,7 +173,7 @@ public class Object_Spawner : MonoBehaviour
         }
         yield return new WaitForSeconds(Random.Range(0.5f, 1f));
         Door_Pop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        Door_Pop.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(Random.Range(-5f, 5f), Random.Range(0f, 10f)), new Vector2(Random.Range(-1f, 1f), Random.Range(-2f, 2f)));
+        Door_Pop.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(Random.Range(-50f, 50f), Random.Range(0f, 300f)), new Vector2(0f, 0f));
         Spawn_Enabled = true;
         Destroy(Door_Pop, 4);
     }

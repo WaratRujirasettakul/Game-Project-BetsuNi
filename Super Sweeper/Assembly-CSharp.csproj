@@ -72,6 +72,7 @@
     <Compile Include="Assets\Script\Object_Spawner.cs" />
     <Compile Include="Assets\Script\Player_All.cs" />
     <Compile Include="Assets\Script\Zombie_All.cs" />
+    <Compile Include="Assets\Script\Zombie_Krale.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

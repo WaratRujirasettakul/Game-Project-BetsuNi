@@ -24,7 +24,7 @@ public class Zombie_All : MonoBehaviour
     public float Attack_Penalty;
     
     public float Vision;
-    public int Health;
+    public float Health;
 
     private Transform Target;
     private LayerMask Enemy;
@@ -47,7 +47,7 @@ public class Zombie_All : MonoBehaviour
         {
             {
                 Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.2f, Ally);
-                for (int Index = 0; Index < Colliders.Length; Index++)
+                for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
                     if (Colliders[Index].gameObject != gameObject)
                     {
@@ -73,7 +73,15 @@ public class Zombie_All : MonoBehaviour
             {
                 Walk_Amount = Walk_Speed;
             }
-            Animator.SetFloat("Speed", Mathf.Abs(Walk_Amount));
+            if (!Attack)
+            {
+                Animator.SetFloat("Speed", Mathf.Abs(Walk_Amount));
+            }
+            else
+            {
+                Animator.SetFloat("Speed", 0);
+            }
+            
 
             if (Mathf.Abs(Target.position.x - Zombie.position.x) < 2)
             {
@@ -116,21 +124,24 @@ public class Zombie_All : MonoBehaviour
         {
             Animator.SetTrigger("Attack");
             yield return new WaitForSeconds(Attack_Frame);
-            Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.2f, Enemy);
-            for (int Index = 0; Index < Colliders.Length; Index++)
+            if (Health > 0)
             {
-                if (Colliders[Index].gameObject != gameObject)
+                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
+                for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
-                    int Right = -1;
-                    if (Colliders[Index].gameObject.GetComponent<Transform>().position.x > Zombie.position.x)
+                    if (Colliders[Index].gameObject != gameObject)
                     {
-                        Right = 1;
+                        int Right = -1;
+                        if (Colliders[Index].gameObject.GetComponent<Transform>().position.x > Zombie.position.x)
+                        {
+                            Right = 1;
+                        }
+                        Colliders[Index].gameObject.GetComponent<Player_All>().Health -= Attack_Damage;
+                        Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Stun;
+                        Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock * Right, 0));
+                        Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                        break;
                     }
-                    Colliders[Index].gameObject.GetComponent<Player_All>().Health -= Attack_Damage;
-                    Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Stun;
-                    Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock*Right, 0));
-                    Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
-                    break;
                 }
             }
         }

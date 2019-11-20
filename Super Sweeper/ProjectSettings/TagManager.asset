@@ -6,9 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Blood1
-  - Blood
   - Exit
   - Blood2
+  - Blood3
+  - Blood4
+  - Blood5
+  - Blood6
+  - Blood0
   layers:
   - Default
   - TransparentFX

@@ -254,15 +254,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3f31c80e5f7a94bb636da846f2a9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zombie: {fileID: 3353671721695975969, guid: 01ec90f4cc168944aa13eb3120089593, type: 3}
-  Zombie_Waiter: {fileID: 5953940612381676761, guid: 87099b8ce35e4df4fa1a46468f0a1909,
-    type: 3}
+  Zombie1: {fileID: 3353671721695975969, guid: 01ec90f4cc168944aa13eb3120089593, type: 3}
+  Zombie2: {fileID: 5953940612381676761, guid: 87099b8ce35e4df4fa1a46468f0a1909, type: 3}
+  Zombie3: {fileID: 5953940612381676761, guid: 6b623002daf12684395d24379c12244d, type: 3}
+  Zombie4: {fileID: 5953940612381676761, guid: 770368ee8114d6643afd256b0c3602ce, type: 3}
+  Zombie5: {fileID: 5953940612381676761, guid: 8d8e9b21ec854294981d9f2329577ff8, type: 3}
+  Zombie6: {fileID: 5953940612381676761, guid: e870d117dd9478f4d9af701b5756a2c0, type: 3}
   Door_Pop: {fileID: 7104169863477964370}
   Knock_1: {fileID: 3975707272497598203}
   Knock_2: {fileID: 161627443868907302}
   Knock_3: {fileID: 2361724300347928317}
   Renderer: {fileID: 8702499063639971354}
-  Level: 1
+  Limited: 0
+  Limited_Spawn: 1
+  Zombie_1: 0
+  Zombie_2: 0
+  Zombie_3: 0
+  Zombie_4: 0
+  Zombie_5: 0
+  Zombie_6: 0
   Spawn_Range: 5
   Spawn_Cooldown_Minimum: 3
   Spawn_Cooldown_Maximum: 8
