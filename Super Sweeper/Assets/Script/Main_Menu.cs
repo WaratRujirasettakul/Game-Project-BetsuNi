@@ -1,47 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Main_Menu : MonoBehaviour
 {
-    public void Start()
+    private void Unlock(string Stage)
+    {
+        GameObject Target = GameObject.Find(Stage);
+        Target.GetComponent<Image>().color = new Color(255, 255, 255);
+        Target.GetComponent<Button>().enabled = true;
+        Target.transform.Find("Lock").GetComponent<Image>().enabled = false;
+    }
+    private void Start()
     {
         if (Level_Save.Level1)
         {
-            GameObject L2 = GameObject.Find("L2");
-            L2.GetComponent<Image>().color = new Color(255, 255, 255);
-            L2.GetComponent<Button>().enabled = true;
-            L2.transform.Find("Lock").GetComponent<Image>().enabled = false;
+            Unlock("L2");
         }
         if (Level_Save.Level2)
         {
-            GameObject L3 = GameObject.Find("L3");
-            L3.GetComponent<Image>().color = new Color(255, 255, 255);
-            L3.GetComponent<Button>().enabled = true;
-            L3.transform.Find("Lock").GetComponent<Image>().enabled = false;
+            Unlock("L3");
         }
         if (Level_Save.Level3)
         {
-            GameObject L4 = GameObject.Find("L4");
-            L4.GetComponent<Image>().color = new Color(255, 255, 255);
-            L4.GetComponent<Button>().enabled = true;
-            L4.transform.Find("Lock").GetComponent<Image>().enabled = false;
+            Unlock("L4");
         }
         if (Level_Save.Level4)
         {
-            GameObject L5 = GameObject.Find("L5");
-            L5.GetComponent<Image>().color = new Color(255, 255, 255);
-            L5.GetComponent<Button>().enabled = true;
-            L5.transform.Find("Lock").GetComponent<Image>().enabled = false;
+            Unlock("L5");
         }
         if (Level_Save.Level5)
         {
-            GameObject L6 = GameObject.Find("L6");
-            L6.GetComponent<Image>().color = new Color(255, 255, 255);
-            L6.GetComponent<Button>().enabled = true;
-            L6.transform.Find("Lock").GetComponent<Image>().enabled = false;
+            Unlock("L6");
+        }
+        if (!Debug.isDebugBuild)
+        {
+            Destroy(GameObject.Find("Unlock"));
+            Destroy(GameObject.Find("Debug"));
+        }
+        else
+        {
+            Destroy(GameObject.Find("Version"));
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            GameObject.Find("MainMenu").transform.SetAsLastSibling();
         }
     }
     public void L1()
@@ -68,41 +74,34 @@ public class Main_Menu : MonoBehaviour
     {
         SceneManager.LoadScene(6);
     }
-    public void Stage()
+    public void Menu_Selection()
     {
-        GameObject.Find("MainMenu").transform.SetAsFirstSibling();
+        GameObject.Find("StageSelection").transform.SetAsLastSibling();
     }
-    public void QuitGame()
+    public void Menu_Return()
     {
-        Debug.Log("Quit");
+        GameObject.Find("MainMenu").transform.SetAsLastSibling();
+    }
+    public void Quit()
+    {
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log("Quit");
+        }
         Application.Quit();
     }
     public void Cheat()
     {
+        Debug.Log("Unlocked");
         Level_Save.Level1 = true;
         Level_Save.Level2 = true;
         Level_Save.Level3 = true;
         Level_Save.Level4 = true;
         Level_Save.Level5 = true;
-        GameObject L2 = GameObject.Find("L2");
-        L2.GetComponent<Image>().color = new Color(255, 255, 255);
-        L2.GetComponent<Button>().enabled = true;
-        L2.transform.Find("Lock").GetComponent<Image>().enabled = false;
-        GameObject L3 = GameObject.Find("L3");
-        L3.GetComponent<Image>().color = new Color(255, 255, 255);
-        L3.GetComponent<Button>().enabled = true;
-        L3.transform.Find("Lock").GetComponent<Image>().enabled = false;
-        GameObject L4 = GameObject.Find("L4");
-        L4.GetComponent<Image>().color = new Color(255, 255, 255);
-        L4.GetComponent<Button>().enabled = true;
-        L4.transform.Find("Lock").GetComponent<Image>().enabled = false;
-        GameObject L5 = GameObject.Find("L5");
-        L5.GetComponent<Image>().color = new Color(255, 255, 255);
-        L5.GetComponent<Button>().enabled = true;
-        L5.transform.Find("Lock").GetComponent<Image>().enabled = false;
-        GameObject L6 = GameObject.Find("L6");
-        L6.GetComponent<Image>().color = new Color(255, 255, 255);
-        L6.GetComponent<Button>().enabled = true;
-        L6.transform.Find("Lock").GetComponent<Image>().enabled = false;
+        Unlock("L2");
+        Unlock("L3");
+        Unlock("L4");
+        Unlock("L5");
+        Unlock("L6");
     }
 }
