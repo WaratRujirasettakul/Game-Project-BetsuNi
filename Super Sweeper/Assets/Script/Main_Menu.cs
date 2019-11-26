@@ -78,6 +78,10 @@ public class Main_Menu : MonoBehaviour
     {
         GameObject.Find("StageSelection").transform.SetAsLastSibling();
     }
+    public void Menu_Control()
+    {
+        GameObject.Find("Control").transform.SetAsLastSibling();
+    }
     public void Menu_Return()
     {
         GameObject.Find("MainMenu").transform.SetAsLastSibling();

@@ -32,7 +32,7 @@ public class Exit_Object : MonoBehaviour
             {
                 Level_Save.Level5 = true;
             }
-            Player.Back();
+            Player.Fail_Not();
         }
     }
 }

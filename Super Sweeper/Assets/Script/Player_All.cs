@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,6 +36,10 @@ public class Player_All : MonoBehaviour
     public Image Blood5_Icon;
     public Image Blood6_Icon;
 
+    public GameObject Menu_Pause;
+    public GameObject Menu_Win;
+    public GameObject Menu_Lose;
+
     [Header("Component")]
     public Transform Player;
     public CharacterController2D Controller;
@@ -66,6 +71,7 @@ public class Player_All : MonoBehaviour
 
     [HideInInspector] public bool Door_Open = false;
 
+    private Dictionary<GameObject, int> Clean_Target;
     private GameObject Exit;
     private LayerMask Enemy;
     private LayerMask Blood;
@@ -81,13 +87,14 @@ public class Player_All : MonoBehaviour
     private bool Clean = false;
     private bool Attack = false;
     private bool Return = false;
-    public void Back()
-    {
-        StartCoroutine(MainMenu());
-    }
+    private bool Active = false;
+    private bool Final = false;
     private void Start()
     {
         Exit = GameObject.FindGameObjectWithTag("Exit");
+        Menu_Pause.SetActive(false);
+        Menu_Win.SetActive(false);
+        Menu_Lose.SetActive(false);
         Enemy = LayerMask.GetMask("Enemy");
         Blood = LayerMask.GetMask("Blood");
         if (Blood0_Need == 0) { Blood0_Current.enabled = false; Blood0_Require.enabled = false; Blood0_Icon.enabled = false; }
@@ -108,80 +115,87 @@ public class Player_All : MonoBehaviour
     private void Update()
     {
         Camera.position = new Vector3(Player.position.x, Player.position.y + 2, -10f);
-        if (Health > 0)
+        if (!Active && !Final)
         {
-            Walk_Target = Input.GetAxisRaw("Horizontal") * Walk_Speed;
-
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Cancel"))
             {
-                if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
-                {
-                    Animator.SetBool("Jump", true);
-                    Jump = true;
-                }
-            }
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
-                {
-                    Attack = true;
-                    StartCoroutine(LightAttack());
-                }
-            }
-            else if (Input.GetButtonDown("Fire2"))
-            {
-                if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
-                {
-                    Attack = true;
-                    StartCoroutine(HeavyAttack());
-                }
-            } //DUHDUHDUHDUHDUHDUHDUHDUHDUHDUH
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
-                {
-                    Clean = true;
-                    StartCoroutine(DoClean());
-                }
-            }
-            if (Stun > 0)
-            {
-                StunRender.color = new Color(1, 1, 1, 1);
+                Menu_Pause.SetActive(true);
+                Time.timeScale = 0;
+                Active = true;
             }
             else
             {
-                StunRender.color = new Color(1, 1, 1, 0);
-                /*Collider2D[] Colliders = Physics2D.OverlapCircleAll(transform.position, 3f, Blood);
-                for (int Index = 0; Index < Colliders.Length; ++Index)
+                if (Health > 0)
                 {
-                    GameObject Blood_Target = Colliders[Index].gameObject;
-                    if (Blood_Target.CompareTag("Blood1"))
+                    Walk_Target = Input.GetAxisRaw("Horizontal") * Walk_Speed;
+                    if (Mathf.Abs(Walk_Target) <= 0 && Controller.m_Grounded && !Attack && Stun <= 0)
                     {
-                        Blood1++;
-                        Blood1_Current.text = Blood1.ToString("D2");
-                        Destroy(Blood_Target);
-                        break;
+                        Collider2D[] Colliders = Physics2D.OverlapCircleAll(transform.position, 3f, Blood);
+                        for (int Index = 0; Index < Colliders.Length; ++Index)
+                        {
+                            /*GameObject Blood_Target = Colliders[Index].gameObject;
+                            if (Blood_Target.CompareTag("Blood1"))
+                            {
+                                Blood1++;
+                                Blood1_Current.text = Blood1.ToString("D2");
+                                Destroy(Blood_Target);
+                                break;
+                            }*/
+                        }
                     }
-                    else if (Blood_Target.CompareTag("Blood2"))
+                    if (Input.GetButtonDown("Jump"))
                     {
-                        Blood2++;
-                        Blood2_Current.text = Blood2.ToString("D2");
-                        Destroy(Blood_Target);
-                        break;
+                        if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
+                        {
+                            Animator.SetBool("Jump", true);
+                            Jump = true;
+                        }
                     }
-                    else if (Blood_Target.CompareTag("Blood3"))
+                    if (Input.GetButtonDown("Fire1"))
                     {
-                        Blood3++;
-                        Blood3_Current.text = Blood3.ToString("D2");
-                        Destroy(Blood_Target);
-                        break;
+                        if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
+                        {
+                            Attack = true;
+                            StartCoroutine(LightAttack());
+                        }
                     }
-                }*/
+                    else if (Input.GetButtonDown("Fire2"))
+                    {
+                        if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
+                        {
+                            Attack = true;
+                            StartCoroutine(HeavyAttack());
+                        }
+                    } //DUHDUHDUHDUHDUHDUHDUHDUHDUHDUH
+                    else if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (!Attack && Controller.m_Grounded && !Clean && Stun <= 0)
+                        {
+                            Clean = true;
+                            StartCoroutine(DoClean());
+                        }
+                    }
+                    if (Stun > 0)
+                    {
+                        StunRender.color = new Color(1, 1, 1, 1);
+                    }
+                    else
+                    {
+                        StunRender.color = new Color(1, 1, 1, 0);
+                    }
+                }
+                else
+                {
+                    StunRender.color = new Color(1, 1, 1, 1);
+                }
             }
         }
         else
         {
-            StunRender.color = new Color(1, 1, 1, 1);
+            if (Input.GetButtonDown("Cancel"))
+            {
+                Resume();
+            }
         }
     }
     private void FixedUpdate()
@@ -220,11 +234,7 @@ public class Player_All : MonoBehaviour
         {
             Animator.SetBool("Dead", true);
             RigidBody.bodyType = RigidbodyType2D.Static;
-            if (!Return)
-            {
-                Back();
-            }
-
+            Fail();
         }
         if (Player.position.y < -10)
         {
@@ -243,12 +253,53 @@ public class Player_All : MonoBehaviour
         }
         Jump = false;
     }
-    private IEnumerator MainMenu()
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        Active = false;
+        Menu_Pause.SetActive(false);
+    }
+    public void Retry()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void ExitStage()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+    public void Fail()
+    {
+        if (!Return)
+        {
+            StartCoroutine(Lose());
+        }
+    }
+    public void Fail_Not()
+    {
+        if (!Return)
+        {
+            StartCoroutine(Win());
+        }
+    }
+    private IEnumerator Lose()
     {
         Return = true;
         Background.SetBool("Fade", true);
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(0);
+        Final = true;
+        Time.timeScale = 0;
+        Menu_Lose.SetActive(true);
+    }
+    private IEnumerator Win()
+    {
+        Return = true;
+        Background.SetBool("Fade", true);
+        yield return new WaitForSeconds(2);
+        Final = true;
+        Time.timeScale = 0;
+        Menu_Win.SetActive(true);
     }
     private IEnumerator LightAttack()
     {
