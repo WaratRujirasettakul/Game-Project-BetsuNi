@@ -33,6 +33,14 @@ public class Main_Menu : MonoBehaviour
         {
             Unlock("L6");
         }
+        if (Level_Save.Level6)
+        {
+            Unlock("L7");
+        }
+        if (Level_Save.Level7)
+        {
+            Unlock("L8");
+        }
         if (!Debug.isDebugBuild)
         {
             Destroy(GameObject.Find("Unlock"));
@@ -74,6 +82,14 @@ public class Main_Menu : MonoBehaviour
     {
         SceneManager.LoadScene(6);
     }
+    public void L7()
+    {
+        SceneManager.LoadScene(7);
+    }
+    public void L8()
+    {
+        SceneManager.LoadScene(8);
+    }
     public void Menu_Selection()
     {
         GameObject.Find("StageSelection").transform.SetAsLastSibling();
@@ -102,10 +118,14 @@ public class Main_Menu : MonoBehaviour
         Level_Save.Level3 = true;
         Level_Save.Level4 = true;
         Level_Save.Level5 = true;
+        Level_Save.Level6 = true;
+        Level_Save.Level7 = true;
         Unlock("L2");
         Unlock("L3");
         Unlock("L4");
         Unlock("L5");
         Unlock("L6");
+        Unlock("L6");
+        Unlock("L7");
     }
 }

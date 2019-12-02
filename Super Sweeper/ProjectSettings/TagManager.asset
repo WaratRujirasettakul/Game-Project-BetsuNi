@@ -71,6 +71,9 @@ TagManager:
   - name: Block
     uniqueID: 3670456505
     locked: 0
+  - name: Foreground
+    uniqueID: 1112410847
+    locked: 0
   - name: Sign
     uniqueID: 4076156277
     locked: 0
