@@ -154,8 +154,8 @@ public class Zombie_All : MonoBehaviour
     {
         RigidBody.bodyType = RigidbodyType2D.Static;
         Collider.enabled = false;
-        yield return new WaitForSeconds(1);
         Instantiate(Blood, new Vector3(Zombie.position.x, -3.2f, Zombie.position.z), new Quaternion());
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
     private IEnumerator Jumping()

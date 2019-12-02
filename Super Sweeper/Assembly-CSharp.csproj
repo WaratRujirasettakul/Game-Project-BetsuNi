@@ -63,9 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Animate.cs" />
     <Compile Include="Assets\Script\Blood.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
     <Compile Include="Assets\Script\Exit_Object.cs" />
+    <Compile Include="Assets\Script\KraleEncounter.cs" />
     <Compile Include="Assets\Script\Level_Save.cs" />
     <Compile Include="Assets\Script\Main_Menu.cs" />
     <Compile Include="Assets\Script\Object_Light.cs" />

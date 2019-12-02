@@ -4,20 +4,24 @@ using UnityEngine;
 public class Blood : MonoBehaviour
 {
     [Header("Property")]
-    [Range(0, 6)]public int Level = 1;
-    [HideInInspector]public List<int> Clean;
+    [Range(0, 6)] public int Level = 1;
+    [HideInInspector] public List<int> Clean;
+    [HideInInspector] public int Clean_Total;
+    [HideInInspector] public int Clean_Done = 0;
     private void Safe_Clean(int Length)
     {
-        for (int i = 0; i <= Length; ++i)
+        Clean_Total = Length - 1;
+        for (int i = 0; i < Length; ++i)
         {
-            Clean.Add(Random.Range(1, 2));
+            Clean.Add(Random.Range(1, 3));
         }
     }
     private void Dang_Clean(int Length)
     {
-        for (int i = 0; i <= Length; ++i)
+        Clean_Total = Length - 1;
+        for (int i = 0; i < Length; ++i)
         {
-            Clean.Add(Random.Range(1, 4));
+            Clean.Add(Random.Range(1, 5));
         }
     }
     private void Start()

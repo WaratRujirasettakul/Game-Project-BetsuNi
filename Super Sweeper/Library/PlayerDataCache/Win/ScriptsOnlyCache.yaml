@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - Blood
     - CharacterController2D
     - Exit_Object
+    - KraleEncounter
     - Main_Menu
     - Object_Light
     - Object_Spawner
@@ -28,11 +29,14 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -55,7 +59,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -137,6 +147,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11526}
     - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
       Script: {instanceID: 12326}
@@ -152,6 +164,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13126}
     - Class: 114
       Script: {instanceID: 13132}
+    - Class: 114
+      Script: {instanceID: 51570}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -223,6 +237,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10902}
     - Class: 114
       Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11604}
     - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
@@ -310,6 +326,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10902}
     - Class: 114
       Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11604}
     - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
@@ -400,6 +418,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11526}
     - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
       Script: {instanceID: 12326}
@@ -486,6 +506,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10902}
     - Class: 114
       Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11604}
     - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
@@ -574,9 +596,187 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11526}
     - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
       Script: {instanceID: 11632}
     - Class: 114
       Script: {instanceID: 11920}
+    - Class: 114
+      Script: {instanceID: 12382}
+    - Class: 114
+      Script: {instanceID: 13034}
+    - Class: 114
+      Script: {instanceID: 13060}
+    - Class: 114
+      Script: {instanceID: 13106}
+    - Class: 114
+      Script: {instanceID: 13126}
+    - Class: 114
+      Script: {instanceID: 13132}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+    Assets/Scenes/Stage 7.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 706}
+    - Class: 114
+      Script: {instanceID: 9816}
+    - Class: 114
+      Script: {instanceID: 9880}
+    - Class: 114
+      Script: {instanceID: 10128}
+    - Class: 114
+      Script: {instanceID: 10206}
+    - Class: 114
+      Script: {instanceID: 10902}
+    - Class: 114
+      Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
+      Script: {instanceID: 11632}
+    - Class: 114
+      Script: {instanceID: 12326}
+    - Class: 114
+      Script: {instanceID: 12382}
+    - Class: 114
+      Script: {instanceID: 13034}
+    - Class: 114
+      Script: {instanceID: 13060}
+    - Class: 114
+      Script: {instanceID: 13106}
+    - Class: 114
+      Script: {instanceID: 13126}
+    - Class: 114
+      Script: {instanceID: 13132}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
+      Script: {instanceID: 0}
+    Assets/Scenes/Stage 8.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 706}
+    - Class: 114
+      Script: {instanceID: 9816}
+    - Class: 114
+      Script: {instanceID: 10128}
+    - Class: 114
+      Script: {instanceID: 10206}
+    - Class: 114
+      Script: {instanceID: 10902}
+    - Class: 114
+      Script: {instanceID: 11526}
+    - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
+      Script: {instanceID: 11920}
+    - Class: 114
+      Script: {instanceID: 12326}
     - Class: 114
       Script: {instanceID: 12382}
     - Class: 114
@@ -1240,7 +1440,7 @@ ScriptsOnlyBuild:
     className: Light2D
   - hash:
       serializedVersion: 2
-      Hash: 75aacc0f080e54ecafcb5d0a5d44d4bf
+      Hash: 999028a4ff350591b7db04fb502c7f43
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Blood
@@ -1252,7 +1452,7 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: 463cca7be0791eb9745bd2db11aa22e6
+      Hash: b187e232a19fc66b3350dcc9fe810c0f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player_All
@@ -1262,6 +1462,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0416b24c76eabdf552e342e660477810
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KraleEncounter
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Animate
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity
@@ -1271,5 +1483,7 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Stage 4.unity
   - Assets/Scenes/Stage 5.unity
   - Assets/Scenes/Stage 6.unity
-  playerPath: D:/PaatR/document/GitHub/Game-Project-BetsuNi/Super Sweeper Priest Hell
-    Edition/Super Sweeper.exe
+  - Assets/Scenes/Stage 7.unity
+  - Assets/Scenes/Stage 8.unity
+  playerPath: C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper Master 0.9/Super
+    Sweeper.exe

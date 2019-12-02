@@ -134,7 +134,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	private void Flip()
+	public void Flip()
 	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
@@ -145,7 +145,9 @@ public class CharacterController2D : MonoBehaviour
 		transform.localScale = theScale;
         if (Clean != null)
         {
-            Clean.flipX = !Clean.flipX;
+            Vector3 theScalez = Clean.transform.localScale;
+            theScalez.x *= -1;
+            Clean.transform.localScale = theScalez;
         }
 	}
 }
