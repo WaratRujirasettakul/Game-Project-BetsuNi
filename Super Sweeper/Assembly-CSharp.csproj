@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Blood.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
+    <Compile Include="Assets\Script\Data.cs" />
     <Compile Include="Assets\Script\Exit_Object.cs" />
     <Compile Include="Assets\Script\KraleEncounter.cs" />
     <Compile Include="Assets\Script\Level_Save.cs" />

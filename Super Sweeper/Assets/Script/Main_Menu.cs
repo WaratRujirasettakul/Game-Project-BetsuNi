@@ -13,6 +13,21 @@ public class Main_Menu : MonoBehaviour
     }
     private void Start()
     {
+        if (!Level_Save.Loaded)
+        {
+            Data Data = Level_Save.Load();
+            if (Data != null)
+            {
+                Level_Save.Level1 = Data.Level[0];
+                Level_Save.Level2 = Data.Level[1];
+                Level_Save.Level3 = Data.Level[2];
+                Level_Save.Level4 = Data.Level[3];
+                Level_Save.Level5 = Data.Level[4];
+                Level_Save.Level6 = Data.Level[5];
+                Level_Save.Level7 = Data.Level[6];
+            }
+        }
+        Level_Save.Save();
         if (Level_Save.Level1)
         {
             Unlock("L2");
