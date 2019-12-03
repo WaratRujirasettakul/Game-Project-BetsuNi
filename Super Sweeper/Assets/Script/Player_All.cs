@@ -302,14 +302,14 @@ public class Player_All : MonoBehaviour
                             {
                                 Controller.Flip();
                             }
-                            Animator.SetTrigger("Clean");
-                            Clean_Sound.Play();
                             if (Clean_Target.Count > 0)
                             {
                                 Blood Wipe_Target = Clean_Target[0];
                                 Debug.Log(Wipe_Target.Clean[Wipe_Target.Clean_Done]);
                                 if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 1 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 4)
                                 {
+                                    Animator.SetTrigger("Clean");
+                                    Clean_Sound.Play();
                                     ++Wipe_Target.Clean_Done;
                                     --Clean_Heal;
                                     if (Clean_Heal <= 0)
@@ -375,6 +375,11 @@ public class Player_All : MonoBehaviour
                                     }
                                     Clean_Refresh();
                                 }
+                                else if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 2 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 3)
+                                {
+                                    
+                                    ++Stun;
+                                }
                             }
                         }
                     }
@@ -386,13 +391,13 @@ public class Player_All : MonoBehaviour
                             {
                                 Controller.Flip();
                             }
-                            Animator.SetTrigger("Clean");
-                            Clean_Sound.Play();
                             if (Clean_Target.Count > 0)
                             {
                                 Blood Wipe_Target = Clean_Target[0];
                                 if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 2 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 3)
                                 {
+                                    Animator.SetTrigger("Clean");
+                                    Clean_Sound.Play();
                                     ++Wipe_Target.Clean_Done;
                                     --Clean_Heal;
                                     if (Clean_Heal <= 0)
@@ -457,6 +462,10 @@ public class Player_All : MonoBehaviour
                                         Door_Open = true;
                                     }
                                     Clean_Refresh();
+                                }
+                                else if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 1 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 4)
+                                {
+                                    ++Stun;
                                 }
                             }
                         }
