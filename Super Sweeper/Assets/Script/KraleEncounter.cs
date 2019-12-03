@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Animate : MonoBehaviour
+public class KraleEncounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform Player;
+    public Animator Animator;
+    public AudioSource Sound;
 
-    // Update is called once per frame
+    private bool Run = false;
     void Update()
     {
-        
+        if (Mathf.Abs(Player.position.x - transform.position.x) < 10 && !Run)
+        {
+            Run = true;
+            Sound.Play();
+            Animator.SetTrigger("Start");
+        }
     }
 }

@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Animate.cs" />
     <Compile Include="Assets\Script\Blood.cs" />
     <Compile Include="Assets\Script\CharacterController2D.cs" />
     <Compile Include="Assets\Script\Exit_Object.cs" />
@@ -75,6 +74,11 @@
     <Compile Include="Assets\Script\Player_All.cs" />
     <Compile Include="Assets\Script\Zombie_All.cs" />
     <Compile Include="Assets\Script\Zombie_Krale.cs" />
+    <None Include="Assets\Audio\ZombieS\00_Krale\Stage_1\source.txt" />
+    <None Include="Assets\Audio\ZombieS\02_waiter\Attack\source.txt" />
+    <None Include="Assets\Audio\ZombieS\00_Krale\Stage_3\NormalSource.txt" />
+    <None Include="Assets\Audio\ZombieS\06_Zatan\Attack\source.txt" />
+    <None Include="Assets\Audio\Jeremy\Attacked\source.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/NongZ/Desktop/Game-Project-BetsuNi/Super Sweeper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

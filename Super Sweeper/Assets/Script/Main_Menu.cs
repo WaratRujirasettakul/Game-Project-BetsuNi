@@ -125,7 +125,7 @@ public class Main_Menu : MonoBehaviour
         Unlock("L4");
         Unlock("L5");
         Unlock("L6");
-        Unlock("L6");
         Unlock("L7");
+        Unlock("L8");
     }
 }

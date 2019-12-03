@@ -14,6 +14,8 @@ public class Object_Spawner : MonoBehaviour
     public GameObject Knock_1;
     public GameObject Knock_2;
     public GameObject Knock_3;
+    public AudioSource Knock_Sound;
+    public AudioSource Broke_Sound;
     [Header("Component")]
     public SpriteRenderer Renderer;
     [Header("Property")]
@@ -121,7 +123,7 @@ public class Object_Spawner : MonoBehaviour
         {
             Transform Knock = Knock_1.GetComponent<Transform>();
             SpriteRenderer Knock_Render = Knock_1.GetComponent<SpriteRenderer>();
-
+            Knock_Sound.Play();
             Knock.localPosition = new Vector3(Random.Range(-0.25f, 1f), Random.Range(-1f, 2f), 0);
             Knock_Render.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(0.1f);
@@ -129,6 +131,7 @@ public class Object_Spawner : MonoBehaviour
             for (int i = 0; i <= Random.Range(1, 4); ++i)
             {
                 yield return new WaitForSeconds(Random.Range(0.25f, 0.75f));
+                Knock_Sound.Play();
                 Knock.localPosition = new Vector3(Random.Range(-0.25f, 1f), Random.Range(-1f, 2f), 0);
                 Knock_Render.color = new Color(1, 1, 1, 1);
                 yield return new WaitForSeconds(0.1f);
@@ -139,7 +142,7 @@ public class Object_Spawner : MonoBehaviour
         {
             Transform Knock = Knock_2.GetComponent<Transform>();
             SpriteRenderer Knock_Render = Knock_2.GetComponent<SpriteRenderer>();
-
+            Knock_Sound.Play();
             Knock.localPosition = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-1f, 1f), 0);
             Knock_Render.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(0.1f);
@@ -147,6 +150,7 @@ public class Object_Spawner : MonoBehaviour
             for (int i = 0; i <= Random.Range(1, 4); ++i)
             {
                 yield return new WaitForSeconds(Random.Range(0.25f, 0.75f));
+                Knock_Sound.Play();
                 Knock.localPosition = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-1f, 1f), 0);
                 Knock_Render.color = new Color(1, 1, 1, 1);
                 yield return new WaitForSeconds(0.1f);
@@ -157,7 +161,7 @@ public class Object_Spawner : MonoBehaviour
         {
             Transform Knock = Knock_3.GetComponent<Transform>();
             SpriteRenderer Knock_Render = Knock_3.GetComponent<SpriteRenderer>();
-
+            Knock_Sound.Play();
             Knock.localPosition = new Vector3(Random.Range(-0.25f, 1f), Random.Range(-1f, 2f), 0);
             Knock_Render.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(0.1f);
@@ -165,6 +169,7 @@ public class Object_Spawner : MonoBehaviour
             for (int i = 0; i <= Random.Range(1, 4); ++i)
             {
                 yield return new WaitForSeconds(Random.Range(0.25f, 0.75f));
+                Knock_Sound.Play();
                 Knock.localPosition = new Vector3(Random.Range(-0.25f, 1f), Random.Range(-1f, 2f), 0);
                 Knock_Render.color = new Color(1, 1, 1, 1);
                 yield return new WaitForSeconds(0.1f);
@@ -174,6 +179,7 @@ public class Object_Spawner : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(0.5f, 1f));
         Door_Pop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         Door_Pop.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(Random.Range(-50f, 50f), Random.Range(0f, 300f)), new Vector2(0f, 0f));
+        Broke_Sound.PlayScheduled(3.8);
         Spawn_Enabled = true;
         Destroy(Door_Pop, 4);
     }

@@ -11,6 +11,7 @@ public class Zombie_All : MonoBehaviour
     public Transform Zombie;
     public Transform Check_Attack;
     public SpriteRenderer Warn;
+    public AudioSource Sound;
     [Header("Property")]
     public GameObject Blood;
     public float Walk_Speed;
@@ -26,6 +27,9 @@ public class Zombie_All : MonoBehaviour
     public float Vision;
     public float Health;
 
+    public AudioClip[] Sound_Attack_Array;
+    public AudioClip[] Sound_Dead_Array;
+
     private Transform Target;
     private LayerMask Enemy;
     private LayerMask Ally;
@@ -40,6 +44,7 @@ public class Zombie_All : MonoBehaviour
         Target = GameObject.Find("Player").GetComponent<Transform>();
         Enemy = LayerMask.GetMask("Player");
         Ally = LayerMask.GetMask("Enemy");
+        Sound.volume = 0.8f;
     }
     private void Update()
     {
@@ -126,6 +131,9 @@ public class Zombie_All : MonoBehaviour
             yield return new WaitForSeconds(Attack_Frame);
             if (Health > 0)
             {
+                int Indexa = Random.Range(0, Sound_Attack_Array.Length);
+                Sound.pitch = Random.Range(0.8f, 1.2f);
+                Sound.PlayOneShot(Sound_Attack_Array[Indexa]);
                 Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
                 for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
@@ -140,6 +148,7 @@ public class Zombie_All : MonoBehaviour
                         Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Stun;
                         Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock * Right, 0));
                         Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                        Colliders[Index].transform.Find("Attacked").GetComponent<AudioSource>().Play();
                         break;
                     }
                 }
@@ -152,6 +161,9 @@ public class Zombie_All : MonoBehaviour
     }
     private IEnumerator Dying()
     {
+        int Indexa = Random.Range(0, Sound_Dead_Array.Length);
+        Sound.pitch = Random.Range(0.8f, 1.2f);
+        Sound.PlayOneShot(Sound_Dead_Array[Indexa]);
         RigidBody.bodyType = RigidbodyType2D.Static;
         Collider.enabled = false;
         Instantiate(Blood, new Vector3(Zombie.position.x, -3.2f, Zombie.position.z), new Quaternion());

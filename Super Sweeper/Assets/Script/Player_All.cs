@@ -40,6 +40,7 @@ public class Player_All : MonoBehaviour
     public GameObject Menu_Pause;
     public GameObject Menu_Win;
     public GameObject Menu_Lose;
+    public GameObject Menu_Last;
 
     [Header("Component")]
     public Transform Player;
@@ -55,6 +56,9 @@ public class Player_All : MonoBehaviour
     public SpriteRenderer Clean_2_Right;
     public SpriteRenderer Clean_3_Left;
     public SpriteRenderer Clean_3_Right;
+    public AudioSource Attack_Light_Sound;
+    public AudioSource Attack_Heavy_Sound;
+    public AudioSource Clean_Sound;
 
     [Header("Property")]
     public float Walk_Speed;
@@ -107,7 +111,7 @@ public class Player_All : MonoBehaviour
             for (int Index = 0; Index < Colliders.Length; ++Index)
             {
                 Blood Target_Blood = Colliders[Index].gameObject.GetComponent<Blood>();
-                for (int Index2 = 0; (Index2 + Target_Blood.Clean_Done) <= Target_Blood.Clean_Total; ++Index2)
+                for (int Index2 = Target_Blood.Clean_Done; Index2 < Target_Blood.Clean_Total; ++Index2)
                 {
                     if (Clean_Max <= 3)
                     {
@@ -232,6 +236,7 @@ public class Player_All : MonoBehaviour
         Menu_Pause.SetActive(false);
         Menu_Win.SetActive(false);
         Menu_Lose.SetActive(false);
+        Menu_Last.SetActive(false);
         Enemy = LayerMask.GetMask("Enemy");
         Blood = LayerMask.GetMask("Blood");
         if (Blood0_Need == 0) { Blood0_Current.enabled = false; Blood0_Require.enabled = false; Blood0_Icon.enabled = false; }
@@ -298,9 +303,11 @@ public class Player_All : MonoBehaviour
                                 Controller.Flip();
                             }
                             Animator.SetTrigger("Clean");
+                            Clean_Sound.Play();
                             if (Clean_Target.Count > 0)
                             {
                                 Blood Wipe_Target = Clean_Target[0];
+                                Debug.Log(Wipe_Target.Clean[Wipe_Target.Clean_Done]);
                                 if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 1 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 4)
                                 {
                                     ++Wipe_Target.Clean_Done;
@@ -380,10 +387,11 @@ public class Player_All : MonoBehaviour
                                 Controller.Flip();
                             }
                             Animator.SetTrigger("Clean");
+                            Clean_Sound.Play();
                             if (Clean_Target.Count > 0)
                             {
                                 Blood Wipe_Target = Clean_Target[0];
-                                if (Clean_Target[0].Clean[Clean_Target[0].Clean_Done] == 2 || Clean_Target[0].Clean[Clean_Target[0].Clean_Done] == 3)
+                                if (Wipe_Target.Clean[Wipe_Target.Clean_Done] == 2 || Wipe_Target.Clean[Wipe_Target.Clean_Done] == 3)
                                 {
                                     ++Wipe_Target.Clean_Done;
                                     --Clean_Heal;
@@ -468,7 +476,7 @@ public class Player_All : MonoBehaviour
                 }
             }
         }
-        else
+        else if(Active && !Final)
         {
             if (Input.GetButtonDown("Cancel"))
             {
@@ -562,6 +570,13 @@ public class Player_All : MonoBehaviour
             StartCoroutine(Win());
         }
     }
+    public void Fail_Not_Last()
+    {
+        if (!Return)
+        {
+            StartCoroutine(Done());
+        }
+    }
     private IEnumerator Lose()
     {
         Return = true;
@@ -580,30 +595,45 @@ public class Player_All : MonoBehaviour
         Time.timeScale = 0;
         Menu_Win.SetActive(true);
     }
+    private IEnumerator Done()
+    {
+        Return = true;
+        Background.SetBool("Fade", true);
+        yield return new WaitForSeconds(2);
+        Final = true;
+        Time.timeScale = 0;
+        Menu_Last.SetActive(true);
+    }
     private IEnumerator LightAttack()
     {
         Animator.SetTrigger("Attack_Light");
         yield return new WaitForSeconds(Attack_Frame);
+        Attack_Light_Sound.PlayScheduled(0.15);
         Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
         for (int Index = 0; Index < Colliders.Length; ++Index)
         {
-            if (Colliders[Index].gameObject != gameObject)
+            GameObject Target = Colliders[Index].gameObject;
+            if (Target != gameObject)
             {
                 int Right = -1;
-                if (Colliders[Index].gameObject.GetComponent<Transform>().position.x > Player.position.x)
+                if (Target.GetComponent<Transform>().position.x > Player.position.x)
                 {
                     Right = 1;
                 }
-                if (Colliders[Index].gameObject.GetComponent<Zombie_All>())
+                if (Target.GetComponent<Zombie_All>())
                 {
-                    Colliders[Index].gameObject.GetComponent<Zombie_All>().Health -= Attack_Damage;
+                    Target.GetComponent<Zombie_All>().Health -= Attack_Damage;
                 }
                 else
                 {
-                    Colliders[Index].gameObject.GetComponent<Zombie_Krale>().Health -= Attack_Damage;
+                    Target.GetComponent<Zombie_Krale>().Health -= Attack_Damage;
+                    Target.GetComponent<Animator>().SetTrigger("Attacked");
+                    int Indexa = Random.Range(0, Target.GetComponent<Zombie_Krale>().Sound_Hurt_Array.Length);
+                    Target.GetComponent<Zombie_Krale>().Sound.pitch = Random.Range(0.8f, 1.2f);
+                    Target.GetComponent<Zombie_Krale>().Sound.PlayOneShot(Target.GetComponent<Zombie_Krale>().Sound_Hurt_Array[Indexa]);
                 }
-                Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock * Right, 0));
-                Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                Target.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock * Right, 0));
+                Target.GetComponent<Animator>().SetTrigger("Attacked");
                 break;
             }
         }
@@ -614,28 +644,33 @@ public class Player_All : MonoBehaviour
     {
         Animator.SetTrigger("Attack_Heavy");
         yield return new WaitForSeconds(Attack_Heavy_Frame);
+        Attack_Heavy_Sound.Play();
         if (Stun <= 0 && Attack)
         {
             Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 2.5f, Enemy);
             for (int Index = 0; Index < Colliders.Length; ++Index)
             {
-                if (Colliders[Index].gameObject != gameObject)
+                GameObject Target = Colliders[Index].gameObject;
+                if (Target != gameObject)
                 {
                     int Right = -1;
-                    if (Colliders[Index].gameObject.GetComponent<Transform>().position.x > Player.position.x)
+                    if (Target.GetComponent<Transform>().position.x > Player.position.x)
                     {
                         Right = 1;
                     }
-                    if (Colliders[Index].gameObject.GetComponent<Zombie_All>())
+                    if (Target.GetComponent<Zombie_All>())
                     {
-                        Colliders[Index].gameObject.GetComponent<Zombie_All>().Health -= Attack_Heavy_Damage;
+                        Target.GetComponent<Zombie_All>().Health -= Attack_Heavy_Damage;
                     }
                     else
                     {
-                        Colliders[Index].gameObject.GetComponent<Zombie_Krale>().Health -= Attack_Heavy_Damage;
+                        Target.GetComponent<Zombie_Krale>().Health -= Attack_Heavy_Damage;
+                        Target.GetComponent<Animator>().SetTrigger("Attacked");
+                        int Indexa = Random.Range(0, Target.GetComponent<Zombie_Krale>().Sound_Hurt_Array.Length);
+                        Target.GetComponent<Zombie_Krale>().Sound.pitch = Random.Range(0.8f, 1.2f);
+                        Target.GetComponent<Zombie_Krale>().Sound.PlayOneShot(Target.GetComponent<Zombie_Krale>().Sound_Hurt_Array[Indexa]);
                     }
-                    Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Heavy_Knock * Right, 0));
-                    Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                    Target.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Heavy_Knock * Right, 0));
                 }
             }
             yield return new WaitForSeconds(Attack_Heavy_Penalty);

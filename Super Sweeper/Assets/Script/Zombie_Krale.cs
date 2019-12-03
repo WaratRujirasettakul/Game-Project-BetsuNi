@@ -11,6 +11,7 @@ public class Zombie_Krale : MonoBehaviour
     public Transform Zombie;
     public Transform Check_Attack;
     public SpriteRenderer Warn;
+    public AudioSource Sound;
     [Header("Property")]
     public GameObject Blood;
     public float Walk_Speed;
@@ -34,13 +35,18 @@ public class Zombie_Krale : MonoBehaviour
     public float Vision;
     public float Health;
 
+    public AudioClip[] Sound_Attack_Heavy_Array;
+    public AudioClip[] Sound_Attack_Array;
+    public AudioClip[] Sound_Hurt_Array;
+
     private Transform Target;
     private LayerMask Enemy;
     private LayerMask Ally;
     private float Walk_Target = 0f;
     private float Walk_Amount = 0f;
     private bool Escape = false;
-    private bool Run = false;
+    private bool Run_Left = false;
+    private bool Run_Right = false;
     private bool Jump = false;
     private bool Attack = false;
     private bool Cooldown = false;
@@ -75,16 +81,42 @@ public class Zombie_Krale : MonoBehaviour
             {
                 Walk_Target = Zombie.position.x;
             }
-            if (!Run)
+            if (Run_Left)
+            {
+                Walk_Amount = -Walk_Speed;
+                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
+                for (int Index = 0; Index < Colliders.Length; ++Index)
+                {
+                    if (Colliders[Index].gameObject != gameObject)
+                    {
+                        Animator.SetBool("Jump", true);
+                        Jump = true;
+                        StartCoroutine(Jumping());
+                        break;
+                    }
+                }
+            }
+            else if(Run_Right)
+            {
+                Walk_Amount = Walk_Speed;
+                Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 1f, Enemy);
+                for (int Index = 0; Index < Colliders.Length; ++Index)
+                {
+                    if (Colliders[Index].gameObject != gameObject)
+                    {
+                        Animator.SetBool("Jump", true);
+                        Jump = true;
+                        StartCoroutine(Jumping());
+                        break;
+                    }
+                }
+            }
+            else
             {
                 if (Walk_Target < Zombie.position.x) { Walk_Amount = -Walk_Speed; }
                 else if (Walk_Target > Zombie.position.x) { Walk_Amount = Walk_Speed; }
             }
-            else
-            {
-                if (Walk_Target < Zombie.position.x) { Walk_Amount = Walk_Speed; }
-                else if (Walk_Target > Zombie.position.x) { Walk_Amount = -Walk_Speed; }
-            }
+
             if (!Attack)
             {
                 Animator.SetFloat("Speed", Mathf.Abs(Walk_Amount));
@@ -151,6 +183,9 @@ public class Zombie_Krale : MonoBehaviour
             yield return new WaitForSeconds(Attack_Frame);
             if (Health > 0)
             {
+                int Indexa = Random.Range(0, Sound_Attack_Array.Length);
+                Sound.pitch = Random.Range(0.8f, 1.2f);
+                Sound.PlayOneShot(Sound_Attack_Array[Indexa]);
                 Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 0.6f, Enemy);
                 for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
@@ -165,18 +200,40 @@ public class Zombie_Krale : MonoBehaviour
                         Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Stun;
                         Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Knock * Right, 0));
                         Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                        Colliders[Index].transform.Find("Attacked").GetComponent<AudioSource>().Play();
                         break;
                     }
                 }
             }
         }
-        yield return new WaitForSeconds(Attack_Penalty);
-        Attack = false;
-        Run = true;
-        yield return new WaitForSeconds(Attack_Cooldown);
-        Cooldown = false;
-        yield return new WaitForSeconds(Run_Duration);
-        Run = false;
+        int Rand = Random.Range(1, 6);
+        if (Rand == 1)
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            Run_Left = true;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+            yield return new WaitForSeconds(Run_Duration);
+            Run_Left = false;
+        }
+        else if (Rand == 2)
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            Run_Right = true;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+            yield return new WaitForSeconds(Run_Duration);
+            Run_Right = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+        }
     }
     private IEnumerator Zombie_Heavy_Attack()
     {
@@ -187,8 +244,12 @@ public class Zombie_Krale : MonoBehaviour
         {
             Animator.SetTrigger("Attack_Heavy");
             yield return new WaitForSeconds(Attack_Heavy_Frame);
+
             if (Health > 0)
             {
+                int Indexa = Random.Range(0, Sound_Attack_Heavy_Array.Length);
+                Sound.pitch = Random.Range(0.8f, 1.2f);
+                Sound.PlayOneShot(Sound_Attack_Heavy_Array[Indexa]);
                 Collider2D[] Colliders = Physics2D.OverlapCircleAll(Check_Attack.position, 2f, Enemy);
                 for (int Index = 0; Index < Colliders.Length; ++Index)
                 {
@@ -203,18 +264,40 @@ public class Zombie_Krale : MonoBehaviour
                         Colliders[Index].gameObject.GetComponent<Player_All>().Stun += Attack_Heavy_Stun;
                         Colliders[Index].gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Attack_Heavy_Knock * Right, 0));
                         Colliders[Index].gameObject.GetComponent<Animator>().SetTrigger("Attacked");
+                        Colliders[Index].transform.Find("Attacked").GetComponent<AudioSource>().Play();
                         break;
                     }
                 }
             }
         }
-        yield return new WaitForSeconds(Attack_Heavy_Penalty);
-        Attack = false;
-        Run = true;
-        yield return new WaitForSeconds(Attack_Heavy_Cooldown);
-        Cooldown = false;
-        yield return new WaitForSeconds(Run_Duration);
-        Run = false;
+        int Rand = Random.Range(1, 6);
+        if (Rand == 1)
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            Run_Left = true;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+            yield return new WaitForSeconds(Run_Duration);
+            Run_Left = false;
+        }
+        else if (Rand == 2)
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            Run_Right = true;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+            yield return new WaitForSeconds(Run_Duration);
+            Run_Right = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(Attack_Penalty);
+            Attack = false;
+            yield return new WaitForSeconds(Attack_Cooldown);
+            Cooldown = false;
+        }
     }
     private IEnumerator Escaping()
     {

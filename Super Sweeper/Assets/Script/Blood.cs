@@ -10,7 +10,7 @@ public class Blood : MonoBehaviour
     [HideInInspector] public int Clean_Done = 0;
     private void Safe_Clean(int Length)
     {
-        Clean_Total = Length - 1;
+        Clean_Total = Length;
         for (int i = 0; i < Length; ++i)
         {
             Clean.Add(Random.Range(1, 3));
@@ -18,7 +18,7 @@ public class Blood : MonoBehaviour
     }
     private void Dang_Clean(int Length)
     {
-        Clean_Total = Length - 1;
+        Clean_Total = Length;
         for (int i = 0; i < Length; ++i)
         {
             Clean.Add(Random.Range(1, 5));
